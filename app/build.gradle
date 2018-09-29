@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "android.zj.com.zjmine"
-        minSdkVersion 15
+        applicationId "com.zjandroid.nani"
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,4 +25,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.airbnb.android:lottie:2.7.0'//Lottie库 svg简化库
+    implementation 'com.apkfuns.logutils:library:1.6.1'//日志库
 }

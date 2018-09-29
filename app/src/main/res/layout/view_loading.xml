@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -15,6 +15,14 @@
     <!--app:lottie_loop="true"-->
     <!--app:lottie_autoPlay="true" />-->
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="servishero_loading.json"
+        app:lottie_loop="true" />
 
 
 </RelativeLayout>
