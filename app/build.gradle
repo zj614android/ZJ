@@ -27,4 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.airbnb.android:lottie:2.7.0'//Lottie库 svg简化库
     implementation 'com.apkfuns.logutils:library:1.6.1'//日志库
+    implementation 'com.github.zj614android:netstateview:1.0.0'//网络
 }

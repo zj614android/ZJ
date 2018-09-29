@@ -1,8 +1,9 @@
-package android.zj.com.zjmine;
+package android.zj.com.zjmine.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.zj.com.zjmine.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
     }
 
 
@@ -19,4 +23,5 @@ public class MainActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         return super.onTouchEvent(event);
     }
+
 }
