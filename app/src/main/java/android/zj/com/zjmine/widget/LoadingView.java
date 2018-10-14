@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.zj.com.zjmine.R;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 public class LoadingView extends RelativeLayout {
 
     public LoadingView(Context context) {
@@ -23,8 +25,11 @@ public class LoadingView extends RelativeLayout {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        LayoutInflater fromInflate = LayoutInflater.from(context);
-        View inflate = fromInflate.inflate(R.layout.view_loading, null);
+        View rootView = View.inflate(context, R.layout.view_anim_loading, LoadingView.this);
+//        LottieAnimationView animationView = (LottieAnimationView) inflate.findViewById(R.id.animation_view);
+//        animationView.setAnimation("servishero_loading.json");
+//        animationView.loop(true);
+
     }
 
 }

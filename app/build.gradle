@@ -28,4 +28,8 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.7.0'//Lottie库 svg简化库
     implementation 'com.apkfuns.logutils:library:1.6.1'//日志库
     implementation 'com.github.zj614android:netstateview:1.0.0'//网络
+
+    //aspectj支持
+    api 'com.android.support:appcompat-v7:27.0.0'
+    api 'org.aspectj:aspectjrt:1.8.9'
 }

@@ -2,18 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:fitsSystemWindows="true"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
     tools:context=".ui.activity.MainActivity">
 
-    <!--<com.airbnb.lottie.LottieAnimationView-->
-    <!--android:id="@+id/animation_view"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--app:lottie_fileName="anima.json"-->
-    <!--app:lottie_loop="true"-->
-    <!--app:lottie_autoPlay="true" />-->
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
