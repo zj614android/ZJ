@@ -6,3 +6,6 @@
 /build
 /captures
 .externalNativeBuild
+mhome/build
+mextension/build
+mbacklog/build
