@@ -1,7 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.zjandroid.nani"
         minSdkVersion 16
@@ -9,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 
         //error ARouter::Compiler >>> No module name, for more information, look at gradle log.
         javaCompileOptions {
@@ -17,12 +25,47 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "env"
+    productFlavors {
+        // 开发环境
+        develop {
+            buildConfigField "int", "ENV_TYPE", "1"
+            manifestPlaceholders = [
+                    app_name: "开发-纳尼"
+            ]
+            dimension "env"
+        }
+        // 预上线环境
+        preReflease {
+            buildConfigField "int", "ENV_TYPE", "2"
+            manifestPlaceholders = [
+                    app_name: "预-纳尼"
+            ]
+            dimension "env"
+        }
+        // 生产环境
+        product {
+            buildConfigField "int", "ENV_TYPE", "3"
+            manifestPlaceholders = [
+                    app_name: "纳尼"
+            ]
+            dimension "env"
+        }
+    }
+    // gradle 插件 3.0.0 以后版本
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "项目名-${variant.baseName}-${variant.versionCode}-V${variant.versionName}.apk"
+//        }
+//    }
 }
 
 dependencies {
@@ -32,18 +75,40 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     implementation 'com.airbnb.android:lottie:2.7.0'//Lottie库 svg简化库
     implementation 'com.apkfuns.logutils:library:1.6.1'//日志库
     implementation 'com.github.zj614android:netstateview:1.0.0'//网络
 
-    //aspectj支持
-    api 'com.android.support:appcompat-v7:27.0.0'
-    api 'org.aspectj:aspectjrt:1.8.9'
+
+    //**********************架构核心组件********************
+    // rx + retrofit + MVVM + Dagger + AOP
+    implementation "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$rootProject.adapterRxjavaVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.converterGsonVersion"
+
+    // MVVM ViewModel and LiveData
+//    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleExtensionsVersion"
+//    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.lifecycleCompilerVersion"
+
 
     //dagger2
-    implementation 'com.google.dagger:dagger:2.18'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.18'
+    implementation "com.google.dagger:dagger:2.9"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.9"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // AOP aspectj支持
+    api 'com.android.support:appcompat-v7:27.0.0'
+    api 'org.aspectj:aspectjrt:1.8.9'
+    //**********************架构核心组件********************
+
+//    //Qmui
+//    implementation ("com.qmuiteam:qmui:$rootProject.qmuiVersion",{
+//        exclude group: 'com.android.support', module: 'support-design'
+//    })
 
     //GreenDao
     implementation "org.greenrobot:greendao:3.2.2"
@@ -64,5 +129,18 @@ dependencies {
     implementation project(':mhome')
     implementation project(':mbacklog')
     implementation project(':mextension')
+
+
+    // 图片选择
+    implementation "com.github.LuckSiege.PictureSelector:picture_library:$rootProject.PictureSelectorVersion"
+
+    //cardView
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
+
+    // okhttp 日志打印
+    implementation("com.github.ihsanbal:LoggingInterceptor:$rootProject.LoggingInterceptorVersion") {
+        exclude group: 'org.json', module: 'json'
+    }
 
 }

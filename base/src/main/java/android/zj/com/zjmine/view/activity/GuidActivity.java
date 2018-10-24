@@ -1,4 +1,4 @@
-package android.zj.com.zjmine.ui.activity;
+package android.zj.com.zjmine.view.activity;
 
 import android.os.Bundle;
 import android.zj.com.zjmine.R;

@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <!--<activity android:name=".ui.activity.SplashActivity" />-->
-        <activity android:name=".ui.activity.GuidActivity" android:launchMode="singleTask"></activity>
-        <activity android:name=".ui.activity.MainActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".view.activity.GuidActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask"></activity>
 
         <!-- 如果您项目中的所有页面都只需要以高或宽中的一个作为基准进行适配的话, 那就只需要填写高或宽中的一个设计图尺寸即可 -->
         <meta-data

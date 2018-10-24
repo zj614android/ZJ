@@ -2,7 +2,9 @@ package android.zj.com.zjmine.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 
 import com.apkfuns.logutils.LogUtils;
 
@@ -12,11 +14,32 @@ import me.jessyan.autosize.AutoSizeConfig;
 public class MyApplication extends Application {
 
     private String TAG = "MyApplication";
+    private static Context mGlobalContext;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
+    public static Context getGlobalContext() {
+        return mGlobalContext;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mGlobalContext = this;
 
+        //初始化项目生命周期回调接口
+        initLifeCycleCallBack();
+
+        //autosize初始化
+        initAutoSize();
+
+    }
+
+    private void initLifeCycleCallBack() {
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityStopped(Activity activity) {
@@ -53,10 +76,6 @@ public class MyApplication extends Application {
                 LogUtils.v(TAG + "___" + activity.getComponentName().getClassName() + "___onActivityCreated");
             }
         });
-
-        //autosize初始化
-        initAutoSize();
-
     }
 
     /**
@@ -68,7 +87,6 @@ public class MyApplication extends Application {
          * 使用前请一定记得跳进源码，查看方法的注释, 下面的注释只是简单描述!!!
          */
         AutoSizeConfig.getInstance()
-
                 //是否让框架支持自定义 Fragment 的适配参数, 由于这个需求是比较少见的, 所以须要使用者手动开启
                 //如果没有这个需求建议不开启
                 .setCustomFragment(true)
